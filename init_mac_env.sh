@@ -16,10 +16,12 @@ function md5sum_of_jdk() {
     md5sum "./${SOFT_JDK}" 2>/dev/null | awk '{print $1}'
 }
 
+# check idea md5
 function md5sum_of_idea() {
     md5sum "./$SOFT_IDEA" 2>/dev/null | awk '{print $1}'
 }
 
+# check maven md5
 function md5sum_of_maven() {
     md5sum "./${SOFT_MAVEN}" 2>/dev/null | awk '{print $1}'
 }
@@ -48,6 +50,57 @@ if [ -z "${wget_bin}" ]; then
 else
     echo 'wget has installed, continue........'
 fi
+
+# -------------------------------------------------------------------------------------------------
+# brew 相关基础命令安装:
+# *) git   (a distributed code repository )
+# *) jq    (a commandline JSON processor )
+# *) nginx (a server proxy soft )
+# *) sed   (Gnu Sed)
+# *) grep  (Gnu grep)
+# *) mysql (a opensource database)
+# -------------------------------------------------------------------------------------------------
+
+if [[ -z "$(which git)" ]]; then
+    echo 'check git do not exist. begin to install git with homebrew .....'
+    brew install git
+    if [ $? -ne 0 ]; then
+        echo 'install git failed.....exit'
+        exit 1;
+    fi
+fi
+
+if [[ -z "$(which jq)" ]]; then
+    echo 'check jq do not exist. begin to install jq with homebrew .....'
+    brew install jq
+    if [ $? -ne 0 ]; then
+        echo 'install jq failed.....exit'
+        exit 1;
+    fi
+fi
+
+if [[ -z "$(which nginx)" ]]; then
+    echo 'check nginx do not exist. begin to install nginx with homebrew .....'
+    brew install nginx
+    if [ $? -ne 0 ]; then
+        echo 'install nginx failed.....exit'
+        exit 1;
+    fi
+fi
+
+brew install grep
+brew install gnu-sed
+
+
+if [[ -z "$(which mysql)" ]]; then
+    echo 'check mysql@5.7 do not exist. begin to install mysql@5.7 with homebrew .....'
+    brew install mysql@5.7
+    if [ $? -ne 0 ]; then
+        echo 'install mysql failed.....exit'
+        exit 1;
+    fi
+fi
+
 
 # 1)  初始化全局通用的一些优化配置，用于所有用户都会用到的基础配置
 echo 'begin to init bash_profile......'
