@@ -58,8 +58,11 @@ else
     echo 'wget has installed, continue........'
 fi
 
+echo 'begin to check whether wget has installed......'
 if [[ -z `which md5sum` ]]; then
-    brew install md5sum
+    brew install md5sha1sum
+else
+    echo 'ok. skip install md5sha1sum'
 fi
 
 # -------------------------------------------------------------------------------------------------
