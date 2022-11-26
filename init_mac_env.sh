@@ -53,6 +53,7 @@ fi
 
 # -------------------------------------------------------------------------------------------------
 # brew 相关基础命令安装:
+# *) iterm2(a terminator emulator)
 # *) git   (a distributed code repository )
 # *) jq    (a commandline JSON processor )
 # *) nginx (a server proxy soft )
@@ -60,6 +61,17 @@ fi
 # *) grep  (Gnu grep)
 # *) mysql (a opensource database)
 # -------------------------------------------------------------------------------------------------
+
+if [ ! -d  /Applications/iTerm.app ];then
+    echo 'check iTerm do not exist. begin to install iTerm with homebrew .....'
+    brew install --cask iterm2
+    if [ $? -ne 0 ]; then
+        echo 'install iTerm failed.....exit'
+        exit 1;
+    fi
+    echo 'install success .... the iterm exist in these dir:'
+    mdfind 'kMDItemCFBundleIdentifier == com.googlecode.iterm2'
+fi
 
 if [[ -z "$(which git)" ]]; then
     echo 'check git do not exist. begin to install git with homebrew .....'
