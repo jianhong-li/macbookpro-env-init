@@ -26,6 +26,13 @@ function md5sum_of_maven() {
     md5sum "./${SOFT_MAVEN}" 2>/dev/null | awk '{print $1}'
 }
 
+# 0)  check shell and change to bash
+
+if [[ '/bin/bash' != `echo "$SHELL"` ]]; then
+    pause '当前的SHELL环境非bash.将会默认切换到bash. press enter to continue .....'
+    ch -s /bin/bash
+fi
+
 # 0)  安装 brew 环境
 
 echo 'begin to install brew......'
@@ -200,5 +207,5 @@ else
 fi
 
 open ./ideaIU-2022.2.3.dmg
-pause 'waiting for install idea yourself. if your install finish. please input "enter" to continue'
+pause 'waiting for install idea yourself. if your installation finish. please input "enter" to continue'
 echo 'ok,we will begin to install xxx.......'
