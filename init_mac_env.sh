@@ -58,6 +58,10 @@ else
     echo 'wget has installed, continue........'
 fi
 
+if [[ -z `which md5sum` ]]; then
+    brew install md5sum
+fi
+
 # -------------------------------------------------------------------------------------------------
 # brew 相关基础命令安装:
 # *) iterm2(a terminator emulator)
@@ -186,7 +190,7 @@ else
 fi
 
 open ./jdk-8u202-macosx-x64.dmg
-pause 'waiting for install jdk yourself.if your install finish. please input "enter" to continue'
+pause 'waiting for install jdk yourself. if your installation finish. please input "enter" to continue'
 echo 'ok,we will begin to install maven.......'
 
 # 3) 安装 Maven
