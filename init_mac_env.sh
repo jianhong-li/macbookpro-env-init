@@ -109,7 +109,6 @@ if [[ ! -d ~/solarized ]]; then
 syntax on
 set background=dark
 colorscheme solarized
-done
 EOF
     # config iterm2
     open "${HOME}/solarized/iterm2-colors-solarized/Solarized Dark.itermcolors"
