@@ -13,6 +13,9 @@
 4. Maven安装.
 5. Idea安装.
 
+> 下载此代码库时，如果是新的Mac系统会没有git。 但是mac系统会自动下载 Command Develepment Tools，然后就会有git了。 
+> 目前还没有集成安装item2的下载。（日期：2022-11-26）（todo: 后面加进来）
+
 
 #### 安装教程
 
