@@ -69,6 +69,7 @@ fi
 # *) mysql (a opensource database)
 # -------------------------------------------------------------------------------------------------
 
+echo 'begin to install/check iTerm2 .......'
 if [ ! -d  /Applications/iTerm.app ];then
     echo 'check iTerm do not exist. begin to install iTerm with homebrew .....'
     brew install --cask iterm2
@@ -78,6 +79,31 @@ if [ ! -d  /Applications/iTerm.app ];then
     fi
     echo 'install success .... the iterm exist in these dir:'
     mdfind 'kMDItemCFBundleIdentifier == com.googlecode.iterm2'
+fi
+
+
+
+echo 'begin to config shell env for iterm2 .......'
+if [[ ! -d ~/solarized ]]; then
+    git clone https://github.com/altercation/solarized.git  ~/solarized
+    if [ $? -ne 0 ]; then
+        echo 'download solarized failed.....exit'
+        exit 1;
+    fi
+
+    # config the vim
+    mkdir -p ~/.vim/colors
+    cp ~/solarized/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/
+    cat > ~/.vimrc << EOF
+syntax on
+set background=dark
+colorscheme solarized
+done
+EOF
+    # config iterm2
+    open '~/solarized/iterm2-colors-solarized/Solarized Dark.itermcolors'
+else
+    echo 'solarized existed. do not config again.....'
 fi
 
 if [[ -z "$(which git)" ]]; then
