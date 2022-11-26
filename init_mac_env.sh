@@ -112,7 +112,7 @@ colorscheme solarized
 done
 EOF
     # config iterm2
-    open '~/solarized/iterm2-colors-solarized/Solarized Dark.itermcolors'
+    open "${HOME}/solarized/iterm2-colors-solarized/Solarized Dark.itermcolors"
 else
     echo 'solarized existed. do not config again.....'
 fi
