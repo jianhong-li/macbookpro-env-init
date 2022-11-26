@@ -34,6 +34,8 @@ cd macbookpro-env-init && sh ./init_mac_env.sh
 > 0） 下载此代码库时，如果是新的Mac系统会没有git。 但是mac系统会自动下载 Command Develepment Tools，然后就会有git了。 <br>
 > 1） 目前还没有集成安装item2的下载。（日期：2022-11-26）（todo: 后面加进来）<br>
 > 2） 此脚本推荐使用的是 bash ， 如果 使用的是zsh。那可能有些命令不支持。 <br>
+> 3)  shell 相关的颜色配置, 参考了[在 Mac OS X 终端里使用 Solarized 配色方案](https://www.vpsee.com/2013/09/use-the-solarized-color-theme-on-mac-os-x-terminal/),这是我一开始使用mac时就使用的教程,至今已有8年有余.在此表示感谢.
+> 4)  Solarized 配色方案仓库为: https://github.com/altercation/solarized , 这是我最喜欢的配色. 感谢作者. (虽然我也想在ubuntu下用上它.似乎他在ubuntu下的方案并不完美.我正在找相应的方案.)
 
 #### 参与贡献
 
