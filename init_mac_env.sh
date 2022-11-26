@@ -30,7 +30,7 @@ function md5sum_of_maven() {
 
 if [[ '/bin/bash' != `echo "$SHELL"` ]]; then
     pause '当前的SHELL环境非bash.将会默认切换到bash. press enter to continue .....'
-    ch -s /bin/bash
+    chsh -s /bin/bash
 fi
 
 # 0)  安装 brew 环境
