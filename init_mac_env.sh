@@ -49,18 +49,22 @@ fi
 echo 'begin to check whether wget has installed......'
 wget_bin=$(which wget)
 if [ -z "${wget_bin}" ]; then
+  echo 'ready to install ======================> wget <================================='
     brew install wget
     if [ $? -ne 0 ]; then
         echo 'install wget failed.....exit'
         exit 1;
     fi
+    echo 'end   to install ======================> wget <================================='
 else
     echo 'wget has installed, continue........'
 fi
 
 echo 'begin to check whether wget has installed......'
 if [[ -z `which md5sum` ]]; then
+    echo 'ready to install ======================> md5sum <================================='
     brew install md5sha1sum
+    echo 'end   to install ======================> md5sum <================================='
 else
     echo 'ok. skip install md5sha1sum'
 fi
@@ -200,6 +204,7 @@ echo 'ok,we will begin to install maven.......'
 #
 # 软件下载地址: https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.3.3/apache-maven-3.3.3-bin.tar.gz
 # 软件md5: 794b3b7961200c542a7292682d21ba36
+echo 'begin to check whether maven has installed......'
 if [ -f ./apache-maven-3.3.3-bin.tar.gz ] && [ '794b3b7961200c542a7292682d21ba36' == "$(md5sum_of_maven)" ]; then
     echo 'apache-maven-3.3.3-bin.tar.gz is ready now. just use it.....'
 else
@@ -227,7 +232,7 @@ fi
 #
 # 软件下载地址: https://download-cdn.jetbrains.com/idea/ideaIU-2022.2.3.dmg (如果文件下载链接失效,请自行替换)
 # MD5: 103b1a7bfefeb3288d448612ab60356f
-
+echo 'begin to check whether ideaIU has installed......'
 if [ -f ./ideaIU-2022.2.3.dmg ] && [ '103b1a7bfefeb3288d448612ab60356f' == "$(md5sum_of_idea)" ]; then
     echo 'ideaIU-2022.2.3.dmg is ready now. just use it.....'
 else
