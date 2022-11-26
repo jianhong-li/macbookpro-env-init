@@ -13,22 +13,27 @@
 4. Maven安装.
 5. Idea安装.
 
-> 下载此代码库时，如果是新的Mac系统会没有git。 但是mac系统会自动下载 Command Develepment Tools，然后就会有git了。 
-> 1） 目前还没有集成安装item2的下载。（日期：2022-11-26）（todo: 后面加进来）
-> 2） 此脚本推荐使用的是 bash ， 如果 使用的是zsh。那可能有些命令不支持。
+> 0） 下载此代码库时，如果是新的Mac系统会没有git。 但是mac系统会自动下载 Command Develepment Tools，然后就会有git了。 <br>
+> 1） 目前还没有集成安装item2的下载。（日期：2022-11-26）（todo: 后面加进来）<br>
+> 2） 此脚本推荐使用的是 bash ， 如果 使用的是zsh。那可能有些命令不支持。 <br>
 
 
 #### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  下载代码：
+
+```bash
+# 下载代码
+git clone git@github.com:jianhong-li/macbookpro-env-init.git
+# 进入到代码目录 & 执行代码即可 （执行过程有的步骤需要输入sudo密码，即你的管理员密码）
+cd macbookpro-env-init && sh ./init_mac_env.sh
+```
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+> 0） 下载此代码库时，如果是新的Mac系统会没有git。 但是mac系统会自动下载 Command Develepment Tools，然后就会有git了。 <br>
+> 1） 目前还没有集成安装item2的下载。（日期：2022-11-26）（todo: 后面加进来）<br>
+> 2） 此脚本推荐使用的是 bash ， 如果 使用的是zsh。那可能有些命令不支持。 <br>
 
 #### 参与贡献
 
