@@ -116,6 +116,10 @@ else
     echo 'solarized existed. do not config again.....'
 fi
 
+# -------------------------------------------------------------------------------------------------
+# git install
+# -------------------------------------------------------------------------------------------------
+
 if [[ -z "$(which git)" ]]; then
     echo 'check git do not exist. begin to install git with homebrew .....'
     brew install git
@@ -124,7 +128,9 @@ if [[ -z "$(which git)" ]]; then
         exit 1;
     fi
 fi
-
+# -------------------------------------------------------------------------------------------------
+# jq install
+# -------------------------------------------------------------------------------------------------
 if [[ -z "$(which jq)" ]]; then
     echo 'check jq do not exist. begin to install jq with homebrew .....'
     brew install jq
@@ -133,7 +139,10 @@ if [[ -z "$(which jq)" ]]; then
         exit 1;
     fi
 fi
-
+# -------------------------------------------------------------------------------------------------
+# nginx install
+# -------------------------------------------------------------------------------------------------
+echo 'begin to check whether mysql has installed......'
 if [[ -z "$(which nginx)" ]]; then
     echo 'check nginx do not exist. begin to install nginx with homebrew .....'
     brew install nginx
@@ -142,11 +151,16 @@ if [[ -z "$(which nginx)" ]]; then
         exit 1;
     fi
 fi
-
+# -------------------------------------------------------------------------------------------------
+# grep and gun-sed install
+# -------------------------------------------------------------------------------------------------
 brew install grep
 brew install gnu-sed
 
-
+# -------------------------------------------------------------------------------------------------
+# mysql install
+# -------------------------------------------------------------------------------------------------
+echo 'begin to check whether mysql has installed......'
 if [[ -z "$(which mysql)" ]]; then
     echo 'check mysql@5.7 do not exist. begin to install mysql@5.7 with homebrew .....'
     brew install mysql@5.7
@@ -154,9 +168,14 @@ if [[ -z "$(which mysql)" ]]; then
         echo 'install mysql failed.....exit'
         exit 1;
     fi
+else
+    echo 'mysql@5.7 has installed. skip installation this time......'
 fi
 
-
+# -------------------------------------------------------------------------------------------------
+# bash shell env init
+# this will just init once. if detect the flag. it will skip config it again.
+# -------------------------------------------------------------------------------------------------
 # 1)  初始化全局通用的一些优化配置，用于所有用户都会用到的基础配置
 echo 'begin to init bash_profile......'
 
@@ -166,7 +185,6 @@ if [[ ! -f ~/.bash_profile ]];then
 fi
 
 grep -q "^# key_word_for_bash_profile" ~/.bash_profile 2>/dev/null
-
 # shellcheck disable=SC2181
 if [[  $? -eq 0 ]];then
     echo ".bash_profile 文件已经初始化，如有更新请手工处理"
@@ -180,6 +198,7 @@ fi
 # 2) 安装 JDK
 #
 # we use huawei jdk mirror.
+# website: https://mirrors.huaweicloud.com/java/jdk/
 # this file's MD5 is: 9eb027c06c5da727229a29b3be79bf50
 
 echo 'begin to install JDK8-202'
@@ -203,6 +222,8 @@ echo 'ok,we will begin to install maven.......'
 #
 # 软件下载地址: https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.3.3/apache-maven-3.3.3-bin.tar.gz
 # 软件md5: 794b3b7961200c542a7292682d21ba36
+# todo: 华为有更快的镜像,不过没有3.3.3版本. 有3.3.9版本.有时间的话可以切换为此镜像,提升安装速度. apache的下载速度是真的慢.
+# 镜像地址: https://repo.huaweicloud.com/apache/maven/maven-3/3.3.9/binaries/
 echo 'begin to check whether maven has installed......'
 if [ -f ./apache-maven-3.3.3-bin.tar.gz ] && [ '794b3b7961200c542a7292682d21ba36' == "$(md5sum_of_maven)" ]; then
     echo 'apache-maven-3.3.3-bin.tar.gz is ready now. just use it.....'
@@ -224,8 +245,22 @@ else
     sudo tar -C /usr/local/q -xzvf ./apache-maven-3.3.3-bin.tar.gz
 fi
 
-
-
+# -------------------------------------------------------------------------------------------------
+# install thrift compiler: 0.9.3
+# this will just init once. if detect the flag. it will skip config it again.
+# -------------------------------------------------------------------------------------------------
+# 1)  初始化全局通用的一些优化配置，用于所有用户都会用到的基础配置
+echo 'begin to install thrift@0.9......'
+if [ -f '/usr/local/opt/thrift@0.9/bin/thrift' ];then
+    echo 'thrift compiler has installed. skip installation this time'
+else
+    brew install thrift@0.9
+    if [ $? -ne 0 ]; then
+            echo 'install thrift failed.....exit'
+            exit 1;
+    fi
+    echo 'success to install thrift@0.9.3 .............'
+fi
 
 # 4) 安装 Intellij Idea
 #
