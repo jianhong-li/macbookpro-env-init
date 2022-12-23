@@ -16,6 +16,10 @@ alias ll='ls -G -lash'
 # git 相关加强命令
 alias ckmaster='git fetch && git log HEAD..origin/master --oneline'
 
+# ant 相关配置
+ANT_HOME=/usr/local/q/apache-ant-1.10.12
+PATH=${ANT_HOME}/bin:$PATH
+
 # Maven相关配置
 M3_HOME=/usr/local/q/apache-maven-3.3.3
 M2_HOME=/usr/local/q/apache-maven-3.3.3

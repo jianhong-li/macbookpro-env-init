@@ -3,6 +3,8 @@
 SOFT_JDK='jdk-8u202-macosx-x64.dmg'
 SOFT_IDEA='ideaIU-2022.2.3.dmg'
 SOFT_MAVEN='apache-maven-3.3.3-bin.tar.gz'
+# https://dlcdn.apache.org//ant/binaries/apache-ant-1.10.12-bin.tar.gz
+SOFT_ANT='apache-ant-1.10.12-bin.tar.gz'
 
 # pause the program to wait enter anything
 # @see https://www.cyberciti.biz/tips/linux-unix-pause-command.html
@@ -24,6 +26,12 @@ function md5sum_of_idea() {
 # check maven md5
 function md5sum_of_maven() {
     md5sum "./${SOFT_MAVEN}" 2>/dev/null | awk '{print $1}'
+}
+
+
+# check ant md5
+function md5sum_of_ant() {
+    md5sum "./${SOFT_ANT}" 2>/dev/null | awk '{print $1}'
 }
 
 # 0)  check shell and change to bash
@@ -243,6 +251,32 @@ else
     echo 'apache maven:3.3.3 will install in directory: /usr/local/q , this maybe need your sudo password......'
     sudo mkdir -p /usr/local/q
     sudo tar -C /usr/local/q -xzvf ./apache-maven-3.3.3-bin.tar.gz
+fi
+
+
+# 4) 安装 Ant
+#
+# 软件下载地址： https://dlcdn.apache.org//ant/binaries/apache-ant-1.10.12-bin.tar.gz
+
+echo 'begin to check whether ant has installed......'
+if [ -f ./apache-ant-1.10.12-bin.tar.gz ] && [ '5a9995cce0d8170bbf8007f2788ffbe4' == "$(md5sum_of_ant)" ]; then
+    echo 'apache-ant-1.10.12-bin.tar.gz is ready now. just use it.....'
+else
+    rm -rf ./apache-ant-1.10.12-bin.tar.gz
+    wget https://dlcdn.apache.org//ant/binaries/apache-ant-1.10.12-bin.tar.gz
+    if [[ $? -ne 0 ]]; then
+        echo "Download Ant Failed , exit ......"
+        exit 1;
+    fi
+fi
+
+if [ -d '/usr/local/q/apache-ant-1.10.12' ]; then
+    echo 'maven has installed in directory: /usr/local/q/apache-ant-1.10.12 , skip install this time.....'
+else
+    # 确认安装地址
+    echo 'apache ant::1.10.12 will install in directory: /usr/local/q , this maybe need your sudo password......'
+    sudo mkdir -p /usr/local/q
+    sudo tar -C /usr/local/q -xzvf ./apache-ant-1.10.12-bin.tar.gz
 fi
 
 # -------------------------------------------------------------------------------------------------
